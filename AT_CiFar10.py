@@ -46,11 +46,42 @@ y_test = to_categorical(y_test, 10)
 
 batch_size = 128
 num_classes = 10
-epochs = 10
+epochs = 3
 
 #building the model...finally...
 model=tf.keras.models.Sequential(
     [
+        
+        tf.keras.layers.Conv2D(64, (15, 15), padding='same', activation='relu', input_shape=input_shape),
+        tf.keras.layers.Conv2D(64, (10, 10), padding='same', activation='relu', input_shape=input_shape),
+        tf.keras.layers.MaxPool2D(),
+        tf.keras.layers.Dropout(0.15),
+        tf.keras.layers.Conv2D(64, (5, 5), padding='same', activation='relu', input_shape=input_shape),
+        tf.keras.layers.MaxPool2D(),
+        tf.keras.layers.Conv2D(64, (3, 3), padding='same', activation='relu', input_shape=input_shape),
+        tf.keras.layers.MaxPool2D(),
+        tf.keras.layers.Dropout(0.25),
+        tf.keras.layers.Conv2D(128, (10, 10), padding='same', activation='relu', input_shape=input_shape),
+        tf.keras.layers.MaxPool2D(),
+        tf.keras.layers.Conv2D(128, (3, 3), padding='same', activation='relu', input_shape=input_shape),
+        tf.keras.layers.MaxPool2D(),
+        #tf.keras.layers.Dropout(0.35),
+        #tf.keras.layers.Conv2D(256, (5, 5), padding='same', activation='relu', input_shape=input_shape),
+        #tf.keras.layers.Conv2D(256, (3, 3), padding='same', activation='relu', input_shape=input_shape),
+        #tf.keras.layers.MaxPool2D(),
+        #tf.keras.layers.Dropout(0.45),
+        
+        #tf.keras.layers.Conv2D(256, (5, 5), padding='same', activation='relu', input_shape=input_shape),
+        #tf.keras.layers.Conv2D(256, (3, 3), padding='same', activation='relu', input_shape=input_shape),
+        #tf.keras.layers.MaxPool2D(),
+        #tf.keras.layers.Dropout(.55),
+        tf.keras.layers.Flatten(),
+        tf.keras.layers.Dense(num_classes, activation='softmax'),
+
+    ]
+)
+
+'''
         tf.keras.layers.Conv2D(64, (5, 5), padding='same', activation='relu', input_shape=input_shape),
         tf.keras.layers.Conv2D(64, (3, 3), padding='same', activation='relu', input_shape=input_shape),
         tf.keras.layers.MaxPool2D(),
@@ -67,14 +98,13 @@ model=tf.keras.models.Sequential(
         tf.keras.layers.Conv2D(256, (3, 3), padding='same', activation='relu', input_shape=input_shape),
         tf.keras.layers.MaxPool2D(),
         tf.keras.layers.Dropout(0.45),
-        tf.keras.layers.Conv2D(256, (5, 5), padding='same', activation='relu', input_shape=input_shape),
-        tf.keras.layers.Conv2D(256, (3, 3), padding='same', activation='relu', input_shape=input_shape),
-        tf.keras.layers.MaxPool2D(),
+        #tf.keras.layers.Conv2D(256, (5, 5), padding='same', activation='relu', input_shape=input_shape),
+        #tf.keras.layers.Conv2D(256, (3, 3), padding='same', activation='relu', input_shape=input_shape),
+        #tf.keras.layers.MaxPool2D(),
+        #tf.keras.layers.Dropout(.55),
         tf.keras.layers.Flatten(),
-        tf.keras.layers.Dense(num_classes, activation='softmax')
-        
-    ]
-)
+        tf.keras.layers.Dense(num_classes, activation='softmax'),
+        '''
 
 model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc'])
 
