@@ -46,13 +46,13 @@ y_test = to_categorical(y_test, 10)
 
 batch_size = 128
 num_classes = 10
-epochs = 3
+epochs = 10
 
 #building the model...finally...
 model=tf.keras.models.Sequential(
     [
         
-        tf.keras.layers.Conv2D(64, (15, 15), padding='same', activation='relu', input_shape=input_shape),
+        tf.keras.layers.Conv2D(64, (3, 3), padding='same', activation='relu', input_shape=input_shape),
         tf.keras.layers.Conv2D(64, (10, 10), padding='same', activation='relu', input_shape=input_shape),
         tf.keras.layers.MaxPool2D(),
         tf.keras.layers.Dropout(0.15),
@@ -60,11 +60,11 @@ model=tf.keras.models.Sequential(
         tf.keras.layers.MaxPool2D(),
         tf.keras.layers.Conv2D(64, (3, 3), padding='same', activation='relu', input_shape=input_shape),
         tf.keras.layers.MaxPool2D(),
-        tf.keras.layers.Dropout(0.25),
-        tf.keras.layers.Conv2D(128, (10, 10), padding='same', activation='relu', input_shape=input_shape),
-        tf.keras.layers.MaxPool2D(),
-        tf.keras.layers.Conv2D(128, (3, 3), padding='same', activation='relu', input_shape=input_shape),
-        tf.keras.layers.MaxPool2D(),
+        tf.keras.layers.Dropout(0.20),
+        #tf.keras.layers.Conv2D(128, (10, 10), padding='same', activation='relu', input_shape=input_shape),
+        #tf.keras.layers.MaxPool2D(),
+        #tf.keras.layers.Conv2D(128, (3, 3), padding='same', activation='relu', input_shape=input_shape),
+        #tf.keras.layers.MaxPool2D(),
         #tf.keras.layers.Dropout(0.35),
         #tf.keras.layers.Conv2D(256, (5, 5), padding='same', activation='relu', input_shape=input_shape),
         #tf.keras.layers.Conv2D(256, (3, 3), padding='same', activation='relu', input_shape=input_shape),
@@ -110,6 +110,7 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['acc']
 
 history = model.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validation_data=(x_test, y_test))
 
+model.summary()
 
 #plot out training and validation accuracy and loss
 fig, ax = plt.subplots(2, 1)
