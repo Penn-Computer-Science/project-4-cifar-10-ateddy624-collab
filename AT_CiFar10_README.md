@@ -22,3 +22,8 @@ Some ways to potentially improve on the model in the future include:
     1. This will help prevent overfitting
     2. Will effectively increase the size of the dataset
     3. Will effectively make it so that the computer never sees the same image twice.
+---
+### How the Model Performs
+---
+
+![Performance graph]("Figure_1.png")
