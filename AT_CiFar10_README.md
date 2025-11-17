@@ -26,4 +26,4 @@ Some ways to potentially improve on the model in the future include:
 ### How the Model Performs
 ---
 
-![Performance graph]("Figure_1.png")
+![Performance graph]("C:\Users\ateddy624\Figure_1.png")
